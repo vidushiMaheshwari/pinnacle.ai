@@ -10,6 +10,11 @@
     margin-right: 5vw;
 }
 
+.liveModeSwitch {
+    float: right;
+    padding-top: 3px;
+}
+
 .options { 
     display: flex;
     justify-content: center;

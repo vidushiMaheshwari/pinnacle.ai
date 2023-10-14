@@ -1,21 +1,4 @@
-import axios from "axios";
-
-const BASE_URL = "http://127.0.0.1:5000";
-const apiurl = `${BASE_URL}/bot/user_chat`;
-
-async function send_data(value, lectureId) {
-  return await axios.post(
-    apiurl,
-    { value , lectureId},
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    }
-  );
-}
-
+import { send_data } from "../../util/connection";
 
 const API = {
     GetChatbotResponse: async (userinput, lectureId, lectureName) => {
@@ -24,7 +7,7 @@ const API = {
             if (userinput === "hi") {
                 resolve(`Hello! Ask me anything about ${lectureName}`)
             }
-            const res = await send_data(userinput, lectureId);
+            const res = await send_data(userinput, lectureId, '/bot/user_chat');
             if (!res.data.message || res.data.message === undefined) {
                     resolve("Sorry, there were some internal errors. Could you please repeat?")
                   } 

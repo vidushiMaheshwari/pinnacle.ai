@@ -1,0 +1,6 @@
+.cardContainer {
+    padding-left: 5vw;
+    padding-top: 10vh;
+    display: flex;
+    gap: 25px;
+}
