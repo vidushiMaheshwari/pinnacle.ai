@@ -5,7 +5,6 @@ import openai
 import threading
 class liveTranscription():
     def __init__(self):
-        
         self.fs = 44100  # Sample rate
         self.seconds = 3  # Duration of recording
         i = 0
@@ -39,19 +38,18 @@ class liveTranscription():
         tasks = []
 
         while i < 10:
-            print("hey")
             print(i)
             self.record_and_transcribe(i)
             i += 1
+            
         # Continue recording or performing other tasks here
         print(self.res)
         return self.res
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     obj = liveTranscription()
     ret = asyncio.run(obj.main())
     # Wait for all transcription threads to finish
     for thread in obj.transcription_threads:
         thread.join()
     print("".join(obj.res))
-

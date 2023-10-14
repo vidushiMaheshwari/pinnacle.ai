@@ -1,0 +1,7 @@
+.customChatbotDesign{
+    position: fixed;
+    bottom: 20px; /* Adjust this value to control the distance from the bottom */
+    right: 10px; /* Adjust this value to control the distance from the right */
+    display: flex;
+    justify-content: end;
+  }
