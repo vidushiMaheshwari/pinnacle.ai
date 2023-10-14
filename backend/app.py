@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import dotenv_values
+from vectorising import Vectorising
+from livetranscription import liveTranscription
 
 
 config = dotenv_values(".env")
@@ -26,15 +28,27 @@ def user_input_to_bot():
     data = request.get_json()
 
     if data:
-        value = data.get('value')
+        question = data.get('value')
+        # question by the user
         lectureId = data.get('lectureId')
-
+        obj = Vectorising()
+        res = obj.anser_question(question)
         #TODO: send this to GPT API and then get value in res
-        res = "output from GPT"
         return jsonify({'message': res})
     else:
         return jsonify({'error': 'No data received'})
 
+@app.route("/start-recording", methods=['POST'])
+async def start_recording():
+    data = request.get_json()
+    print(data)
+    if data:
+        liveTranscriptionInstance = liveTranscription()
+        await liveTranscriptionInstance.main()
+        print("Ended transcription")
+        return jsonify({'message': 'Ended transcription'})
+    else:
+        return jsonify({'error': 'No data received'})
 
 
 @app.route("/filter", methods=['POST'])
