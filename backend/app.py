@@ -58,11 +58,21 @@ def get_course_from_db():
         return jsonify({'error': 'parameters missing'})
 
     courses_db = db.get_collection('Courses')
-    result = courses_db.find_one({college, topic, course_name})
+    query = {}
+    query['college'] = college
+    query['topic'] = topic
+    query['course_name'] = course_name
+    result = courses_db.find_one(query)
+    res = []
+    # print(result)
     if not result:
         return jsonify({'error': 'no such '})    
     
-    return jsonify({'success': result['lectures']})
+    for value in result['lectures']:
+        print("adding value")
+        res.append([str(value[0]), str(value[1])])
+
+    return jsonify({'success': res})
     
 
 @app.route("/filter", methods=['POST'])

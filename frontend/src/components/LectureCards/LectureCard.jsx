@@ -17,6 +17,7 @@ export const LectureCard = (props) => {
         <div className={classes.heading}>
             {lecture_name}
         </div>
+        <div className={classes.footer} />
         </div>
     )
 }

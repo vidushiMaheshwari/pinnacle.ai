@@ -1,9 +1,13 @@
 .card {
-    border-radius: #56ae57 2px solid;
-    background-color: #56ae57;
+    border: black 2px solid;
     height: 20vh;
-    width: 20vw;
+    width: 18vw;
     cursor: pointer;
+    border-radius: 20px;
+    background-color:  whitesmoke;
+    cursor: pointer;
+    color: rgb(18, 77, 104);
+    box-shadow: 0 4px 8px 0px rgba(2, 166, 163, 0.2);
 }
 
 .heading {
@@ -12,6 +16,7 @@
     text-align: center;
 }
 
-.footer {
-    background-color: rgb(0, 174, 255);
+.card:hover {
+    border:#56ae57 2px solid;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

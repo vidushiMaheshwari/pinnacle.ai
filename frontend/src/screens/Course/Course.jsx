@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import classes from './Course.module.css';
-import { ChatBot } from "../../components/ChatBot/ChatBot";
 import { send_data } from "../../util/connection";
 import { LectureCard } from "../../components/LectureCards/LectureCard";
 
@@ -29,20 +28,14 @@ export const Course = () => {
             <div className={classes.course}> 
             {course_name} 
             </div>
-            {/* <span>
-            <div className={classes.topic}> {topic} </div>
-            <div className={classes.college}> {college} </div>
-            </span> */}
-            
+            <div>
 
-         {/* hola maigo
-         {lectures.length} */}
+            </div>
+            <div className={classes.grid}>
          {lectures.map((card, index) => (
-            <>
-            {card}
-        <LectureCard key={index} props={card} />
-        </>
+        <LectureCard key={index} props={card} className={classes.lecture_card}/>
       ))}
+      </div>
          
          {/* <ChatBot props={mapi}/> */}
         </div>
