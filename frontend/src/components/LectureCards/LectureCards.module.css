@@ -1,0 +1,17 @@
+.card {
+    border-radius: #56ae57 2px solid;
+    background-color: #56ae57;
+    height: 20vh;
+    width: 20vw;
+    cursor: pointer;
+}
+
+.heading {
+    font-size: 30px;
+    padding: 7vh;
+    text-align: center;
+}
+
+.footer {
+    background-color: rgb(0, 174, 255);
+}

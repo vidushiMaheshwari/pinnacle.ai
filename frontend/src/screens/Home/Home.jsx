@@ -16,32 +16,22 @@ export const Home = () => {
     const [runBtnValue, setRunBtnValue] = useState("Explore All")
     const [cardList, setCardList] = useState([]);
     const navigate = useNavigate();
-    // color themes
-    const green = "#81E456"
-    const blue = "#40ECBB"
-    const white = "#FFFFFF"
 
     const handleButtonClick = async () => {
         // I will update the horizontal bar at the bottom
         const lis = await send_data({college, topic}, 'filter')
-        console.log("coming from backend...")
+        // console.log("coming from backend...")
         if (lis.data.success) {
             setCardList(lis.data.success);
         }
     }
 
     useEffect(() => {
-        // Update the document title using the browser API
-        if (topic === "" && college === "") {
-            setRunBtnValue("Explore All");
-        } else if (topic === "") {
-            setRunBtnValue("Explore College");
-        } else if (college === "") {
-            setRunBtnValue("Explore Topic");
-        } else {
-            setRunBtnValue("Explore");
+        async function getAll() {
+            return await handleButtonClick();
         }
-      }, [topic, college]);
+        getAll();
+    }, [])
 
     const switchToLive = () => {
         navigate('/live');

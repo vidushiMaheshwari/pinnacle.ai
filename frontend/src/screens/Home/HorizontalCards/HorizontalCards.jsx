@@ -1,7 +1,8 @@
 import React from "react";
 import { ClassCard } from "../../../components/ClassCard/ClassCard";
 import classes from './HorizontalCards.module.css';
-import { UploadCard } from "../../../components/UploadCard/UploadCard";
+import UploadCard from "../../../components/UploadCard/UploadCard";
+
 
 export const HorizontalCards = (props) => {
 

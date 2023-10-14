@@ -23,3 +23,21 @@
     font-size: 20px;
     font-weight: 700;
   }
+
+  .open_btn {
+    flex: auto;
+    font-size: 20px;
+    color: black;
+  }
+
+  .upload_btn {
+    cursor: pointer;
+    border: rgb(0, 174, 255) 2px solid;
+    width: 150px;
+    border-radius: 5px;
+  }
+
+  .upload_btn_content {
+    margin: 5%;
+    text-align: center;
+  }

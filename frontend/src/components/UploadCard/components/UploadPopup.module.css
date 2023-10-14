@@ -1,0 +1,23 @@
+.body {
+    height: 35vh;
+    width: 45vw;
+    position: absolute;
+    top: 30%;
+    left: 28%;
+    background-color: whitesmoke;
+    border-radius: 30px;
+}
+
+.content {
+    padding: 5%;
+}
+
+.heading {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.input {
+    display: flex;
+    font-size: 20px;
+}

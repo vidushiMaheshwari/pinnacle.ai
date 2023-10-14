@@ -5,6 +5,8 @@ const BASE_URL = "http://127.0.0.1:5000";
 
 export async function send_data(data, url) {
     const apiurl = `${BASE_URL}/${url}`
+    console.log("making request at")
+    console.log(apiurl)
     return await axios.post(
       apiurl,
       data,
