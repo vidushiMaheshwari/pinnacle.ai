@@ -1,6 +1,10 @@
 .cardContainer {
     padding-left: 5vw;
     padding-top: 10vh;
-    display: flex;
-    gap: 25px;
+    padding-right: 5vw;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr); /* Create 4 equal-width columns */
+    grid-template-rows: repeat(3, 1fr);    /* Create 3 equal-height rows */
+    grid-row-gap: 5vh;
 }

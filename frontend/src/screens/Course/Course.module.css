@@ -1,0 +1,27 @@
+.body {
+    margin: 4%;
+    margin-left: 4%;
+}
+
+.course{
+    height: 80px;
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.grid {
+    color: rgb(39, 79, 97);
+    display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Create 4 equal-width columns */
+  grid-template-rows: repeat(3, 1fr);    /* Create 3 equal-height rows */
+  grid-column-gap: 10px;
+  grid-row-gap: 5vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.lecture_card {
+    /* padding: 10px; */
+}
