@@ -1,0 +1,22 @@
+.heading {
+    font-weight: 900;
+    padding-top: 20vh;
+    text-align: center;
+    font-size: 70px;
+}
+
+.divider {
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.options { 
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.description {
+    text-align: center;
+    padding-top: 20px;
+}
