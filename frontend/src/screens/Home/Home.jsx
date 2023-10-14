@@ -6,12 +6,17 @@ import { topics } from "../../constants/topics";
 import classes from "./Home.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import CustomChatbot from "../../components/ClassCard/ChatBot";
 
 export const Home = () => {
     const [college, setCollege] = useState("")
     const [topic, setTopic] = useState("")
     const [runBtnValue, setRunBtnValue] = useState("Explore All")
     const navigate = useNavigate();
+    // color themes
+    const green = "#81E456"
+    const blue = "#40ECBB"
+    const white = "#FFFFFF"
 
     const handleButtonClick = () => {
         navigate('/module', {state: {topic, college}});
@@ -40,7 +45,7 @@ export const Home = () => {
             <div className={classes.description}>Your personal AI buddy</div>
 
             <hr className={classes.divider}/>
-
+            <CustomChatbot className = {classes.customChatbotDesign}></CustomChatbot>
             <div className={classes.options}>
             <Autocomplete 
             disablePortal
