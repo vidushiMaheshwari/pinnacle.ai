@@ -9,7 +9,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import TextLoader
 
 
-# os.environ["OPENAI_API_KEY"] = "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"
+
 
 # def file_to_data(file_paths):
 #     data = []
