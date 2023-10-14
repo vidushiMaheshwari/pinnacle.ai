@@ -35,6 +35,13 @@ def user_input_to_bot():
     else:
         return jsonify({'error': 'No data received'})
 
+@app.route("/add_file", methods=['POST'])
+def add_file():
+    '''
+    adds the file type object in the file collection 
+    as well as in the array of lectures
+    '''
+
 
 
 @app.route("/filter", methods=['POST'])
