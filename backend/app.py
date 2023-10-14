@@ -44,14 +44,6 @@ def user_input_to_bot():
     else:
         return jsonify({'error': 'No data received'})
 
-@app.route("/add_file", methods=['POST'])
-def add_file():
-    '''
-    adds the file type object in the file collection 
-    as well as in the array of lectures  
-    '''
-    return
-
 
 @app.route("/db/get_course_lectures", methods=['POST'])
 def get_course_from_db():
@@ -104,6 +96,8 @@ def add_lecture():
         topic_name = request.form.get('topic_name')
         lecture_name = request.form.get('lecture_name')
         
+        print(request.files)
+        
         if 'lecture' not in request.files:
             return jsonify({"message": "No file part"}), 400
         lecture = request.files['lecture']
@@ -137,10 +131,7 @@ def add_lecture():
             upsert=True
         )
         
-        return jsonify({"message": "Data stored successfully"}), 200
-        
-        
-        
+        return jsonify({"message": "Data stored successfully Vidushi"}), 200
         
     except Exception as e:
         print(f"An error occurred: {str(e)}")
