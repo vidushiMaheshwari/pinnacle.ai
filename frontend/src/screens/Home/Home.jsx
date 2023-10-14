@@ -16,10 +16,6 @@ export const Home = () => {
     const [runBtnValue, setRunBtnValue] = useState("Explore All")
     const [cardList, setCardList] = useState([]);
     const navigate = useNavigate();
-    // color themes
-    const green = "#81E456"
-    const blue = "#40ECBB"
-    const white = "#FFFFFF"
 
     const handleButtonClick = async () => {
         // I will update the horizontal bar at the bottom
