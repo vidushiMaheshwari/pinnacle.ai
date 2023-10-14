@@ -7,7 +7,14 @@ const steps = [
   // Define your chatbot conversation steps here.
   // For example:
   { id: "1", message: "Hello, how can I assist you?", trigger: "2" },
-  { id: "2", user: true, trigger: "3" },
+  { id: "2", user: true, trigger: (value) => {
+    if (value.toLowerCase() === "help") {
+      return "helpStep";
+    } else {
+      return "otherStep";
+    }
+  }},
+    { id: "helpStep", message: "I'm here to help", trigger: "2" },
   { id: "3", message: "You said: {previousValue}", trigger: "2" },
 ];
 
