@@ -20,3 +20,13 @@
     text-align: center;
     padding-top: 20px;
 }
+.customChatbotDesign{
+    position: fixed;
+    bottom: 20px; /* Adjust this value to control the distance from the bottom */
+    right: 10px; /* Adjust this value to control the distance from the right */
+  }
+
+.chatbot {
+    float: right;
+    margin-right: 20px;
+}
