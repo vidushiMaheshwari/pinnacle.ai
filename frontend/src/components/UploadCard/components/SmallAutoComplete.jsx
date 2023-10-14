@@ -55,7 +55,7 @@ export default function SmallAutoComplete(props) {
   return (
     <div>
       <div {...getRootProps()}>
-        {/* <Label {...getInputLabelProps()}></Label> */}
+        <Label {...getInputLabelProps()}></Label>
         <Input {...getInputProps()} />
       </div>
       {groupedOptions.length > 0 ? (

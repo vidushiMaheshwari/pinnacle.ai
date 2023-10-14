@@ -39,10 +39,30 @@ def user_input_to_bot():
 def add_file():
     '''
     adds the file type object in the file collection 
-    as well as in the array of lectures
+    as well as in the array of lectures  
     '''
+    return
 
 
+@app.route("/db/get_course_lectures", methods=['POST'])
+def get_course_from_db():
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': "Could not find any course"})
+    
+    college =data.get('college')
+    topic = data.get('topic')
+    course_name = data.get('course_name')
+    if not college or not topic or not course_name:
+        return jsonify({'error': 'parameters missing'})
+
+    courses_db = db.get_collection('Courses')
+    result = courses_db.find_one({college, topic, course_name})
+    if not result:
+        return jsonify({'error': 'no such '})    
+    
+    return jsonify({'success': result['lectures']})
+    
 
 @app.route("/filter", methods=['POST'])
 def filtered_items():
@@ -60,7 +80,6 @@ def filtered_items():
     if topic:
         query['topic'] = topic
 
-    print(query)
     courses = db.get_collection('Courses')        
     results = courses.find(query)
     res = []
