@@ -10,6 +10,7 @@ from reportlab.pdfgen import canvas
 def split_data(data):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 0)
     all_splits = text_splitter.split_text(data)
+    print(all_splits)
     vectorstore = Chroma.from_texts(all_splits, embedding=OpenAIEmbeddings())
     return vectorstore
 

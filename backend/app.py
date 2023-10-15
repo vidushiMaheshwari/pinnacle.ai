@@ -31,6 +31,23 @@ app.config['DEBUG'] = True
 def check_connectivity():
     return {"hello": "world"}
 
+@app.route("/model_live", methods=['POST'])
+def live_answering():
+    data = request.get_json()
+    # print(data)
+    if not data:
+        return jsonify({'error': 'No data received'})
+    userinput = data.get('userinput')
+    file_contents = ""
+    with open("my_text_file.txt", "r") as file:
+        file_contents = file.read()
+    # print(file_contents)
+    live_instance = model.AI_Model(file_contents, temperature=0.6)
+    res = live_instance.answer_question(userinput)
+    print('Vibhav')
+    print(res)
+    return jsonify({'message': res})
+
 @app.route("/bot/user_chat", methods=['POST'])
 def user_input_to_bot():
     data = request.get_json()

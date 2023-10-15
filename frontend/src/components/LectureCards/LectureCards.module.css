@@ -1,5 +1,5 @@
 .card {
-    border: black 2px solid;
+    border: #56ae57 2px solid;
     height: 20vh;
     width: 18vw;
     cursor: pointer;
@@ -10,13 +10,16 @@
     box-shadow: 0 4px 8px 0px rgba(2, 166, 163, 0.2);
 }
 
+/* @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Josefin+Slab:wght@500&display=swap'); */
 .heading {
-    font-size: 30px;
-    padding: 7vh;
+    font-weight: 700;
+    padding-top: 20vh;
     text-align: center;
+    font-size: 70px;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 .card:hover {
-    border:#56ae57 2px solid;
+    border:#000 2px solid;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
