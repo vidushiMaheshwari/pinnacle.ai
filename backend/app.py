@@ -38,20 +38,23 @@ def check_connectivity():
 @app.route("/bot/user_chat", methods=['POST'])
 def user_input_to_bot():
     data = request.get_json()
-
-    print('data')
     print(data)
+
     if not data:
         return jsonify({'error': 'No data received'})
     userinput = data.get('userinput')
 
-        # lectureId = data.get('lectureId')
-    print("new history")
-    print(AI_MODEL.chat_history)
     res = AI_MODEL.answer_question(userinput)
     return jsonify({'message': res})
-        
 
+@app.route('/model/quiz', methods=['POST'])
+def get_quiz():
+    try:
+        res = AI_MODEL.generate_quiz()
+        return jsonify({'success': res})
+    except():
+        print("FAILEDDD")
+        return jsonify({'error': 'please try again'})
 
 @app.route("/model/create_model_from_text", methods=['POST'])
 def get_model_from_text():
@@ -60,6 +63,7 @@ def get_model_from_text():
         return jsonify({'error': 'missing data'})
     lecture_id = data.get('lecture_id')
     lectures = db.get_collection('Lectures')
+    # print("VIDUSHIIII HERE")
     document = lectures.find_one({"_id": ObjectId(lecture_id)})
     if not document:
         return jsonify({'error': 'no such lecture exist'})
@@ -67,9 +71,6 @@ def get_model_from_text():
     lecture_text = document['lecture_text']
     global AI_MODEL
     AI_MODEL = model.AI_Model(lecture_text, temperature=0.6)
-    res = AI_MODEL.answer_question("what are collisions")
-    print(AI_MODEL.chat_history)
-    print(("ress", res))
     return jsonify({'success': 'finished'})
 
 # @app.route('')
@@ -109,12 +110,10 @@ def get_course_from_db():
     query['course_name'] = course_name
     result = courses_db.find_one(query)
     res = []
-    # print(result)
     if not result:
         return jsonify({'error': 'no such '})    
     
     for value in result['lectures']:
-        print("adding value")
         res.append([str(value[0]), str(value[1])])
 
     return jsonify({'success': res})
@@ -150,8 +149,6 @@ def add_lecture():
         college_name = request.form.get('college_name')
         topic_name = request.form.get('topic_name')
         lecture_name = request.form.get('lecture_name')
-        
-        print(request.files)
         
         if 'lecture' not in request.files:
             return jsonify({"message": "No file part"}), 400
