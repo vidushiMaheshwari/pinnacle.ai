@@ -37,7 +37,7 @@ class liveTranscription():
         i = 0
         tasks = []
 
-        while i < 10:
+        while i < 60:
             print(i)
             self.record_and_transcribe(i)
             i += 1
