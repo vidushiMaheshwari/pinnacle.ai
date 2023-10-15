@@ -14,26 +14,36 @@ export const ChatBot = (props) => {
   const {lectureName, lectureId} = props;
 
   useEffect(() => {
-    async function loadWelcomeMessage() {
-      setMessages([
-        <BotMessage
-          key="0"
-          fetchMessage={async () => await API.GetChatbotResponse("hi", lectureId, lectureName)}
-        />
-      ]);
+    try {
+      async function loadWelcomeMessage() {
+        setMessages([
+          <BotMessage
+            key="0"
+            fetchMessage={async () => await API.GetChatbotResponse("hi", lectureId, lectureName)}
+          />
+        ]);
+      }
+      loadWelcomeMessage();
+    } catch (error) {
+      
     }
-    loadWelcomeMessage();
+    
   }, []);
 
   const send = async text => {
-    const newMessages = messages.concat(
-      <UserMessage key={messages.length + 1} text={text} />,
-      <BotMessage
-        key={messages.length + 2}
-        fetchMessage={async () => await API.GetChatbotResponse(text, lectureId, lectureName)}
-      />
-    );
-    setMessages(newMessages);
+    try {
+      const newMessages = messages.concat(
+        <UserMessage key={messages.length + 1} text={text} />,
+        <BotMessage
+          key={messages.length + 2}
+          fetchMessage={async () => await API.GetChatbotResponse(text, lectureId, lectureName)}
+        />
+      );
+      setMessages(newMessages);
+    } catch (error) {
+      
+    }
+    
   };
 
   return (
