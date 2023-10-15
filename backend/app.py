@@ -73,21 +73,22 @@ def get_notes():
     data = request.get_json()
     if not data:
         return jsonify({'error': 'missing data'})
-    lecture_id = data.get('lecture_id')    
+    lecture_id = data.get('lecture_id')
+    print(lecture_id)
     lectures = db.get_collection('Lectures')
     document = lectures.find_one({"_id": ObjectId(lecture_id)})
-    print(document.get('ai_notes'))
-    if document.get('ai_notes') == None:
+    if document.get('ai_notes') == "":
         res = AI_MODEL.generate_notes()
         db.Lectures.update_one(
             {"_id": ObjectId(lecture_id)},
             {
-                '$setOnInsert': {'ai_notes': res},
+                '$set': {'ai_notes': res},
             },
-            upsert=True
+            # upsert=True
         )
-    res = document['ai_notes']
-    print(res)
+        print("I am done with the if condition")
+        print("stored at the lecture note with id: ", lecture_id)
+    res = document.get('ai_notes')
     return jsonify({'success': res})
 
 
@@ -189,7 +190,8 @@ def add_lecture():
         lecture_entry = {
             'lecture_name': lecture_name,
             'notes': lecture_id,
-            'lecture_text': lecture_text
+            'lecture_text': lecture_text,
+            'ai_notes': "",
         }
         lecture_insert_result = db.Lectures.insert_one(lecture_entry)
         
