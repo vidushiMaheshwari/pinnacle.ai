@@ -134,7 +134,11 @@ def get_course_from_db():
         res.append([str(value[0]), str(value[1])])
 
     return jsonify({'success': res})
-    
+
+
+@app.route("/get_notes", methods=['POST'])
+def get_notes_from_mongo():
+    lectures = db.get_collection('Lectures')
 
 @app.route("/filter", methods=['POST'])
 def filtered_items():
