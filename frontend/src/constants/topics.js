@@ -1,5 +1,17 @@
 export const topics = [
-    "System Architecture",
-    "Data Structures and Algorithms",
-    "Mechanical Physics"
+    "Artificial Intelligence (AI)",
+"Machine Learning",
+"Data Science",
+"Computer Vision",
+"Natural Language Processing (NLP)",
+"Algorithms and Data Structures",
+"Databases and Database Management",
+"Cybersecurity",
+"Operating Systems",
+"Software Engineering",
+"Web Development",
+"Mobile App Development",
+"Cloud Computing",
+"Internet of Things (IoT)",
+"Blockchain Technology",
 ]
