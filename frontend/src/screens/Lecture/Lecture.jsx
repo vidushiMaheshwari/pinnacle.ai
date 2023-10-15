@@ -10,16 +10,7 @@ import { Notes } from "../../components/Notes/Notes";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-// import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
-import {
-  FormControlLabel,
-  RadioGroup,
-  FormControl,
-  FormLabel,
-  Radio,
-} from "@mui/material";
 
 export const Lecture = () => {
   const { topic, college, course_name, lecture_name, lecture_id } = useParams();
@@ -76,8 +67,10 @@ export const Lecture = () => {
     ids.forEach(function (i) {
       if (document.getElementById(i).classList.contains("wrong")) {
         document.getElementById(i).classList.remove("wrong");
+        document.getElementById(i).classList.add("cardi");
       } else if (document.getElementById(i).classList.contains("correct")) {
         document.getElementById(i).classList.remove("correct");
+        document.getElementById(i).classList.add("cardi");
       }
     });
   }
@@ -88,47 +81,113 @@ export const Lecture = () => {
       <div className="features">
         <Notes
           props={{ text: text, lecture_name: lecture_name }}
-          className="feature_item notes"
+          className="feature_item"
         />
+
         {quizQuestions.length === 0 && (
-          <div className="notes feature_item" style={{ height: "350px", width: "240px" }}>
-            {" "}
-            Loading..{" "}
-          </div>
+          <Card
+            sx={{
+              float: "right",
+              width: "25vw",
+              "border-radius": "20px",
+              "justify-content": "center",
+            }}
+          >
+            <CardContent sx={{ textAlign: "center", paddingTop: "50px" }}>
+              <Typography variant="h5" color="text.primary">
+                Questions are on their way...
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <div className="quiz_body">
+                <div className="options">
+                  <div className={`card`}></div>
+                  <div className={`card`}></div>
+                  <div className={`card`}> {quizQuestions[0]["3"]} </div>
+                  <div className={`card`}> {quizQuestions[0]["4"]} </div>
+                </div>
+                <Button
+                  sx={{
+                    // "margin-right": "10%",
+                    "margin-left": "70%",
+                    width: "20%",
+                  }}
+                  onClick={handleNext}
+                >
+                  {" "}
+                  Next{" "}
+                </Button>
+              </div>
+            </CardActions>
+          </Card>
         )}
+
         {quizQuestions.length > 0 && (
-          <Card sx={"feature_item"}>
-            <CardContent>
-              <Typography variant="body2" color="text.primary">
+          <Card
+            sx={{
+              float: "right",
+              width: "25vw",
+              "border-radius": "20px",
+              "justify-content": "center",
+            }}
+          >
+            <CardContent sx={{ textAlign: "center", paddingTop: "50px" }}>
+              <Typography variant="h5" color="text.primary">
                 {quizQuestions[0]["question"]}
               </Typography>
             </CardContent>
             <CardActions>
               <div className="quiz_body">
                 <div className="options">
-                  <div className={`card`} id={"1"} onClick={handleClickCard}>
+                  <div
+                    className={`card cardi`}
+                    id={"1"}
+                    onClick={handleClickCard}
+                  >
                     {" "}
                     {quizQuestions[0]["1"]}{" "}
                   </div>
-                  <div className={`card`} id={"2"} onClick={handleClickCard}>
+                  <div
+                    className={`card cardi`}
+                    id={"2"}
+                    onClick={handleClickCard}
+                  >
                     {" "}
                     {quizQuestions[0]["2"]}{" "}
                   </div>
-                  <div className={`card`} id={"3"} onClick={handleClickCard}>
+                  <div
+                    className={`card cardi`}
+                    id={"3"}
+                    onClick={handleClickCard}
+                  >
                     {" "}
                     {quizQuestions[0]["3"]}{" "}
                   </div>
-                  <div className={`card`} id={"4"} onClick={handleClickCard}>
+                  <div
+                    className={`card cardi`}
+                    id={"4"}
+                    onClick={handleClickCard}
+                  >
                     {" "}
                     {quizQuestions[0]["4"]}{" "}
                   </div>
                 </div>
-                <Button onClick={handleNext}> Next </Button>
+                <Button
+                  sx={{
+                    // "margin-right": "10%",
+                    "margin-left": "70%",
+                    width: "20%",
+                  }}
+                  onClick={handleNext}
+                >
+                  {" "}
+                  Next{" "}
+                </Button>
               </div>
             </CardActions>
           </Card>
-        )}{" "}
-        
+        )}
+
         <ChatBot
           className="chatbot feature_item"
           props={{ lectureId: lecture_id, lectureName: lecture_name }}
