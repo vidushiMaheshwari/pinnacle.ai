@@ -201,7 +201,7 @@ def add_lecture():
         )
         
         return jsonify({"message": "Data stored successfully Vidushi"}), 200
-        
+    
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         return jsonify({"message": "An error occurred while processing the form data"}), 500

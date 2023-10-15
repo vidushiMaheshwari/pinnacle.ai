@@ -23,9 +23,7 @@ body {
   overflow: hidden;
   margin: 0 auto;
 }
-.chatbot-live{
 
-}
 
 /* Header */
 .header {
@@ -34,7 +32,7 @@ body {
   color: #ffffff;
   font-size: 16px;
   font-weight: bold;
-  background-color: #007bff;
+  background-color: #459EFF;
   border-radius: 10px 10px 0 0; /* Rounded top edges */
 }
 
@@ -72,7 +70,7 @@ body {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
-  background: #007bff; /* Same color as the header */
+  background: #459EFF; /* Same color as the header */
   color: #ffffff;
   width: fit-content;
 }
