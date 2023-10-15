@@ -1,0 +1,31 @@
+.chatbot {
+    display: flex;
+    float: right;
+}
+
+.card {
+    /* height: 40px;
+    width: 60px;
+    border: 2px black solid; */
+    padding: 20px;
+    background-color: #ccc; /* Background color of grid items */
+    text-align: center;
+    font-size: 20px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+    grid-gap: 10px; /* Gap between grid items */
+    width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the grid on the page */
+}
+
+.wrong {
+    background-color: red;
+}
+
+
+.correct {
+    background-color: green;
+}
