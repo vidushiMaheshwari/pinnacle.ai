@@ -59,6 +59,7 @@ const CHUNK_DURATION = 5  * 1000; // 5 minutes in milliseconds
         
         <button onClick={handleEmbedClick}>Embed</button>
       </div>
+      <ChatBot></ChatBot>
       {/* Render the YouTube video based on the videoId */}
       {videoId && (
         <div>

@@ -2,9 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import dotenv_values
+from model import AI_Model
 
 
-from vectorising import Vectorising
 
 
 from livetranscription import liveTranscription
@@ -51,6 +51,17 @@ def user_input_to_bot():
         return jsonify({'message': res})
     else:
         return jsonify({'error': 'No data received'})
+@app.route("/bot/lecture_chat_live", methods=['POST'])
+def live_lecture():
+    # in this, I will create a single AI model which will be called multiple times
+    # we are not using lectureId here
+    data = request.get_json()
+    if data:
+        training_text = data.get('lecture_live_text')
+        questions = data.get('question')
+        model = AI_Model(value)
+
+
 
 @app.route("/start-recording", methods=['POST'])
 async def start_recording():
