@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 export const Lecture = () => {
     const {topic, college, course_name, lecture_name, lecture_id} = useParams();
     const [nextBtn, setNextBtn] = useState(false);
+    const [text, setText] = useState("");
     const [quizQuestions, setQuizQuestions] = useState([
         {1: "Good Morning", 2: "Good Night", 3: "Good Afternoon", 4: "Good Evening", answer: "2", question: "Question"},
         {1: "Como Estas", 2: "Gracias", 3: "Buenos Nochas", 4: "Madre", answer: "3", question: "Question"}
@@ -17,9 +18,9 @@ export const Lecture = () => {
 
     useEffect(() => {
         async function createModel() {
-            await send_data({lecture_id: lecture_id}, 'model/create_model_from_text');
-            let newQuestions = await send_data({}, 'model/quiz');
-            console.log(newQuestions);
+            await send_data({lecture_id: lecture_id}, 'model/create_model_from_text'); // Create model
+            await send_data({}, 'model/get_text');
+            let newQuestions = await send_data({lecture_id: lecture_id}, 'model/quiz');
             newQuestions = newQuestions.data.success;
             setQuizQuestions(quizQuestions.concat(newQuestions));
         }
@@ -104,7 +105,7 @@ export const Lecture = () => {
             <div className={`card`} id={"4"} onClick={handleClickCard}> {quizQuestions[0]['4']} </div>
             </div>
             <Button onClick={handleNext}>Next</Button>
-            
+
         </div>)}
         </div>
     )

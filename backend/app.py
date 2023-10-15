@@ -3,10 +3,6 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import dotenv_values
 from model import AI_Model
-
-
-
-
 from livetranscription import liveTranscription
 
 import gridfs 
@@ -63,7 +59,6 @@ def get_model_from_text():
         return jsonify({'error': 'missing data'})
     lecture_id = data.get('lecture_id')
     lectures = db.get_collection('Lectures')
-    # print("VIDUSHIIII HERE")
     document = lectures.find_one({"_id": ObjectId(lecture_id)})
     if not document:
         return jsonify({'error': 'no such lecture exist'})
@@ -73,8 +68,28 @@ def get_model_from_text():
     AI_MODEL = model.AI_Model(lecture_text, temperature=0.6)
     return jsonify({'success': 'finished'})
 
-# @app.route('')
-# def get_ai_notes()
+@app.route('/model/get_text', methods=['POST'])
+def get_notes():
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'missing data'})
+    lecture_id = data.get('lecture_id')    
+    lectures = db.get_collection('Lectures')
+    document = lectures.find_one({"_id": ObjectId(lecture_id)})
+    print(document.get('ai_notes'))
+    if document.get('ai_notes') == None:
+        res = AI_MODEL.generate_notes()
+        db.Lectures.update_one(
+            {"_id": ObjectId(lecture_id)},
+            {
+                '$setOnInsert': {'ai_notes': res},
+            },
+            upsert=True
+        )
+    res = document['ai_notes']
+    print(res)
+    return jsonify({'success': res})
+
 
 @app.route("/start-recording", methods=['POST'])
 async def start_recording():
@@ -187,7 +202,7 @@ def add_lecture():
             upsert=True
         )
         
-        return jsonify({"message": "Data stored successfully Vidushi"}), 200
+        return jsonify({"message": "Data stored successfully"}), 200
         
     except Exception as e:
         print(f"An error occurred: {str(e)}")
