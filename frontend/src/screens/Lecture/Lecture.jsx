@@ -103,8 +103,8 @@ export const Lecture = () => {
                 <div className="options">
                   <div className={`card`}></div>
                   <div className={`card`}></div>
-                  <div className={`card`}> {quizQuestions[0]["3"]} </div>
-                  <div className={`card`}> {quizQuestions[0]["4"]} </div>
+                  <div className={`card`}>  </div>
+                  <div className={`card`}> </div>
                 </div>
                 <Button
                   sx={{
