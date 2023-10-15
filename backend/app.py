@@ -2,12 +2,20 @@ from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import dotenv_values
+
+
+from vectorising import Vectorising
+
+
+from livetranscription import liveTranscription
+
 import gridfs 
 import pdfplumber
 from werkzeug.utils import secure_filename 
 import model
 from bson.objectid import ObjectId
 import os
+
 
 config = dotenv_values(".env")
 app = Flask(__name__)
@@ -44,6 +52,7 @@ def user_input_to_bot():
     return jsonify({'message': res})
         
 
+
 @app.route("/model/create_model_from_text", methods=['POST'])
 def get_model_from_text():
     data = request.get_json()
@@ -61,6 +70,21 @@ def get_model_from_text():
 
 # @app.route('')
 # def get_ai_notes()
+
+@app.route("/start-recording", methods=['POST'])
+async def start_recording():
+    print("reached ")
+    data = request.get_json()
+    if data:
+        videoID = data.get('lectureId')
+        print('what dgood')
+        instance =  liveTranscription()
+        await instance.main()
+        print('done live')
+        return jsonify({'message': "eveyrthing works fine"})
+    else:
+        return jsonify({'error': 'No data received'})
+
 
 @app.route("/db/get_course_lectures", methods=['POST'])
 def get_course_from_db():
