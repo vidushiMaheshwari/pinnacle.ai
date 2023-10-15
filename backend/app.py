@@ -1,18 +1,18 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import dotenv_values
 import gridfs 
 import pdfplumber
 from werkzeug.utils import secure_filename 
+import model
+from bson.objectid import ObjectId
 import os
-
-
-
 
 config = dotenv_values(".env")
 app = Flask(__name__)
 CORS(app)
+AI_MODEL = model.AI_Model("ytve")
 
 client = MongoClient(config['MONGO_CONNECTION'])
 db = client.get_database("Pinnacle")
@@ -29,21 +29,38 @@ def check_connectivity():
 
 @app.route("/bot/user_chat", methods=['POST'])
 def user_input_to_bot():
-    '''
-    expects a json input and give
-    '''
     data = request.get_json()
 
-    if data:
-        value = data.get('value')
-        lectureId = data.get('lectureId')
+    print('data')
+    print(data)
+    if not data:
+        return jsonify({'error': 'No data received'})
+    userinput = data.get('userinput')
+
+        # lectureId = data.get('lectureId')
 
         #TODO: send this to GPT API and then get value in res
-        res = "output from GPT"
-        return jsonify({'message': res})
-    else:
-        return jsonify({'error': 'No data received'})
+    res = AI_MODEL.answer_question(userinput)
+    return jsonify({'message': res})
+        
 
+@app.route("/model/create_model_from_text", methods=['POST'])
+def get_model_from_text():
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'missing data'})
+    lecture_id = data.get('lecture_id')
+    lectures = db.get_collection('Lectures')
+    document = lectures.find_one({"_id": ObjectId(lecture_id)})
+    if not document:
+        return jsonify({'error': 'no such lecture exist'})
+
+    lecture_text = document['lecture_text']
+    AI_MODEL = model.AI_Model(lecture_text, temperature=0.6)
+    return jsonify({'success': 'finished'})
+
+# @app.route('')
+# def get_ai_notes()
 
 @app.route("/db/get_course_lectures", methods=['POST'])
 def get_course_from_db():
