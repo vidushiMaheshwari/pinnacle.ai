@@ -67,3 +67,9 @@
     padding: 1%;
     width: 25vw;
 }
+
+.notes {
+    overflow-y: scroll;
+    width: 25vw;
+    max-width: 25vw;
+}

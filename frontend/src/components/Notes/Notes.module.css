@@ -1,3 +1,15 @@
-.heading {
-    size: 50px;
+.body {
+    width: 26vw;
+    border-radius: 5px;
+    background-color: white;
+
+}
+
+.text {
+    overflow-y: scroll;
+    height: 65vh;
+}
+
+.inner_text {
+    padding: 5%;
 }

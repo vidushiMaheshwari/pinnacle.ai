@@ -7,11 +7,10 @@ export const Notes = (props) => {
 
     return (
         <div className={classes.body}>
-            <div className={classes.heading}>
-                {lecture_name}'s  Notes
-            </div>
             <div className={classes.text}>
+                <div className={classes.inner_text}>
                 {text}
+                </div>
             </div>
             <div className={classes.download} >
 

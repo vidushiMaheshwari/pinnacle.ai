@@ -102,7 +102,7 @@ export const Lecture = () => {
 
             <div className="heading">{lecture_name}</div>
             <div className="features">
-            <Notes props={{text: text, lecture_name: lecture_name}} className="feature_item"/>
+            <Notes props={{text: text, lecture_name: lecture_name}} className="feature_item notes"/>
             
 
              {(quizQuestions.length > 0) && (
