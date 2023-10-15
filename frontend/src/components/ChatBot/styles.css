@@ -12,7 +12,7 @@ body {
 
 /* Chatbot container */
 .chatbot {
-  font-family: monospace;
+  font-family: Arial, sans-serif;
   border-radius: 10px;
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15);
   background: #f5f8fb;
@@ -32,7 +32,7 @@ body {
   max-height: 58px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #002f50;
+  background-color: #459EFF;
 }
 
 .messages {
@@ -63,8 +63,8 @@ body {
   padding: 15px 10px;
   margin: 10px;
   border-radius: 20px 20px 1px 20px;
-  background: #cccccc;
-  color: black;
+  background: #459EFF;
+  color: white;
 }
 
 .input {
