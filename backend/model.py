@@ -23,7 +23,6 @@ class AI_Model:
     
     def answer_question(self, question):
         result = self.qa_chain({"query": question, "chat_history": self.chat_history})
-        print(question)
         self.chat_history.append((question, result['result']))
         return result['result']
     
@@ -44,7 +43,6 @@ class AI_Model:
                 self.chat_history.append(("Generate a quiz", result['result']))
                 return quiz
             except:
-                print("Failed iteration")
                 continue
         
         raise Exception("There was a problem in generating the quiz.")
