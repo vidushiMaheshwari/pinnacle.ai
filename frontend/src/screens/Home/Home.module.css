@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Josefin+Slab:wght@500&display=swap');
+
 .heading {
     font-weight: 700;
     padding-top: 20vh;
     text-align: center;
     font-size: 70px;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 .divider {
@@ -24,6 +27,9 @@
 .description {
     text-align: center;
     padding-top: 20px;
+    font-family: 'Josefin Slab', serif;
+    font-weight: 400;
+    font-size: x-large;
 }
 .customChatbotDesign{
     position: fixed;
