@@ -6,7 +6,7 @@ import Input from "./components/Input";
 
 import API from "./ChatbotAPILive";
 
-import "./styles.css";
+// import "./styles.css";
 import Header from "./components/Header";
 
 export const ChatBotLive = (props) => {
@@ -15,29 +15,39 @@ export const ChatBotLive = (props) => {
 
   useEffect(() => {
     async function loadWelcomeMessage() {
-      setMessages([
-        <BotMessage
-          key="0"
-          fetchMessage={async () => await API.GetChatbotLiveResponse("hi", lectureId, lectureName)}
-        />
-      ]);
+        try {
+            setMessages([
+                <BotMessage
+                  key="0"
+                  fetchMessage={async () => await API.GetChatbotLiveResponse("hi", lectureId, lectureName)}
+                />
+              ]);
+        } catch (error) {
+            console.log(error)
+        }
+      
     }
     loadWelcomeMessage();
   }, []);
 
   const send = async text => {
-    const newMessages = messages.concat(
-      <UserMessage key={messages.length + 1} text={text} />,
-      <BotMessage
-        key={messages.length + 2}
-        fetchMessage={async () => await API.GetChatbotLiveResponse(text, lectureId, lectureName)}
-      />
-    );
-    setMessages(newMessages);
+    try {
+        const newMessages = messages.concat(
+            <UserMessage key={messages.length + 1} text={text} />,
+            <BotMessage
+              key={messages.length + 2}
+              fetchMessage={async () => await API.GetChatbotLiveResponse(text, lectureId, lectureName)}
+            />
+          );
+          setMessages(newMessages);
+    } catch (error) {
+        console.log(error)
+    }
+    
   };
 
   return (
-    <div className="ChatbotLive">
+    <div className="chatbot">
       <Header />
       <Messages messages={messages} />
       <Input onSend={(input) => {

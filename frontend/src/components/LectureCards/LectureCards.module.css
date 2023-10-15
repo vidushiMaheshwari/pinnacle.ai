@@ -10,10 +10,13 @@
     box-shadow: 0 4px 8px 0px rgba(2, 166, 163, 0.2);
 }
 
+/* @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Josefin+Slab:wght@500&display=swap'); */
 .heading {
-    font-size: 30px;
-    padding: 7vh;
+    font-weight: 700;
+    padding-top: 20vh;
     text-align: center;
+    font-size: 70px;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 .card:hover {
