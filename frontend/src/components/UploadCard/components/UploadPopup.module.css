@@ -1,8 +1,8 @@
 .body {
-    height: 35vh;
+    height: 56%;
     width: 45vw;
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 28%;
     background-color: whitesmoke;
     border-radius: 30px;
@@ -15,9 +15,13 @@
 .heading {
     font-size: 30px;
     font-weight: 600;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 .input {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 20px;
 }
