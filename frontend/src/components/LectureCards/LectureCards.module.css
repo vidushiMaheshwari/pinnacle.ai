@@ -1,5 +1,5 @@
 .card {
-    border: black 2px solid;
+    border: #56ae57 2px solid;
     height: 20vh;
     width: 18vw;
     cursor: pointer;
@@ -17,6 +17,6 @@
 }
 
 .card:hover {
-    border:#56ae57 2px solid;
+    border:#000 2px solid;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
