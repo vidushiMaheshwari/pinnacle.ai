@@ -10,39 +10,13 @@ import { Notes } from "../../components/Notes/Notes";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-// import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
-import {
-  FormControlLabel,
-  RadioGroup,
-  FormControl,
-  FormLabel,
-  Radio,
-} from "@mui/material";
 
 export const Lecture = () => {
   const { topic, college, course_name, lecture_name, lecture_id } = useParams();
   const [nextBtn, setNextBtn] = useState(false);
   const [text, setText] = useState("");
-  const [quizQuestions, setQuizQuestions] = useState([
-    {
-      1: "Good Morning",
-      2: "Good Night",
-      3: "Good Afternoon",
-      4: "Good Evening",
-      answer: "2",
-      question: "What is the time complexity of an array list?",
-    },
-    {
-      1: "Como Estas",
-      2: "Gracias",
-      3: "Buenos Nochas",
-      4: "Madre",
-      answer: "3",
-      question: "Question",
-    },
-  ]);
+  const [quizQuestions, setQuizQuestions] = useState([]);
 
   useEffect(() => {
     async function createModel() {
@@ -66,42 +40,15 @@ export const Lecture = () => {
   useEffect(() => {
     async function call(quizQuestion) {
       if (quizQuestion < 3) {
-        const newQuestions = await send_data({}, "model/quiz");
+        let newQuestions = await send_data({}, "model/quiz");
+        newQuestions = newQuestions.data.success;
         setQuizQuestions(quizQuestions.concat(newQuestions));
       }
     }
     call(quizQuestions);
   }, [quizQuestions]);
 
-  // const handleClick = (event) => {
-  //     const id = event.target.id;
-  //     if (id === quizQuestions[0]['answer']) {
-  //         // shade that div green
-  //         document.getElementById(id).classList.add('correct')
-  //         // if correct, then pop the question, and set the next one
-  //         const new_questions = quizQuestions.slice(1);
-  //         console.log(new_questions);
-  //         setQuizQuestions(new_questions);
-  //         const ids = ["1", "2", "3", "4"];
-  //         ids.forEach(function(i) {
-  //             if (document.getElementById(i).classList.contains('wrong')) {
-  //                 document.getElementById(i).classList.remove('wrong')
-  //             } else if (document.getElementById(i).classList.contains('correct')) {
-  //                 document.getElementById(i).classList.remove('correct')
-  //             }
-  //         })
-
-  //     } else {
-  //         // shade that div red
-  //         document.getElementById(id).classList.add('wrong')
-  //     }
-  // }
-
   function handleClickCard(event) {
-    if (document.getElementById(event.target.id).classList.contains("cardi")) {
-      document.getElementById(event.target.id).classList.remove("cardi");
-    }
-
     if (event.target.id === quizQuestions[0]["answer"]) {
       document.getElementById(event.target.id).classList.add("correct");
       setNextBtn(true);
@@ -137,18 +84,45 @@ export const Lecture = () => {
           className="feature_item"
         />
 
-        {quizQuestions.length > 0 && (
-          //      <div className="big_card">
-          //     <div className='question'> {quizQuestions[0]['question']} </div>
-          //     <div className='options'>
-          //     <div className={`card`} id={"1"} onClick={handleClickCard}> {quizQuestions[0]['1']} </div>
-          //     <div className={`card`} id={"2"} onClick={handleClickCard}> {quizQuestions[0]['2']} </div>
-          //     <div className={`card`} id={"3"} onClick={handleClickCard}> {quizQuestions[0]['3']} </div>
-          //     <div className={`card`} id={"4"} onClick={handleClickCard}> {quizQuestions[0]['4']} </div>
-          //     </div>
-          //     <Button onClick={handleNext}>Next</Button>
-          // </div>
+        {quizQuestions.length === 0 && (
+          <Card
+            sx={{
+              float: "right",
+              width: "25vw",
+              "border-radius": "20px",
+              "justify-content": "center",
+            }}
+          >
+            <CardContent sx={{ textAlign: "center", paddingTop: "50px" }}>
+              <Typography variant="h5" color="text.primary">
+                Questions are on their way...
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <div className="quiz_body">
+                <div className="options">
+                  <div className={`card`}></div>
+                  <div className={`card`}></div>
+                  <div className={`card`}> {quizQuestions[0]["3"]} </div>
+                  <div className={`card`}> {quizQuestions[0]["4"]} </div>
+                </div>
+                <Button
+                  sx={{
+                    // "margin-right": "10%",
+                    "margin-left": "70%",
+                    width: "20%",
+                  }}
+                  onClick={handleNext}
+                >
+                  {" "}
+                  Next{" "}
+                </Button>
+              </div>
+            </CardActions>
+          </Card>
+        )}
 
+        {quizQuestions.length > 0 && (
           <Card
             sx={{
               float: "right",
@@ -204,6 +178,7 @@ export const Lecture = () => {
                     "margin-left": "70%",
                     width: "20%",
                   }}
+                  onClick={handleNext}
                 >
                   {" "}
                   Next{" "}
