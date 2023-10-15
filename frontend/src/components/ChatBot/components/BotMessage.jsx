@@ -14,7 +14,7 @@ export default function BotMessage({ fetchMessage }) {
   }, [fetchMessage]);
 
   return (
-    <div className="message-container">
+    <div className="message-container-bot-message">
       <div className="bot-message">{isLoading ? "..." : message}</div>
     </div>
   );

@@ -5,3 +5,4 @@ backend/.env
 
 backend/chatbot-backend/env
 node_modules
+.vscode
