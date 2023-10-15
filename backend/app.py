@@ -20,7 +20,7 @@ import os
 config = dotenv_values(".env")
 app = Flask(__name__)
 CORS(app)
-AI_MODEL = model.AI_Model("ytve")
+AI_MODEL = model.AI_Model("ytve", temperature=0.6)
 
 client = MongoClient(config['MONGO_CONNECTION'])
 db = client.get_database("Pinnacle")
@@ -46,8 +46,8 @@ def user_input_to_bot():
     userinput = data.get('userinput')
 
         # lectureId = data.get('lectureId')
-
-        #TODO: send this to GPT API and then get value in res
+    print("new history")
+    print(AI_MODEL.chat_history)
     res = AI_MODEL.answer_question(userinput)
     return jsonify({'message': res})
         
@@ -65,7 +65,11 @@ def get_model_from_text():
         return jsonify({'error': 'no such lecture exist'})
 
     lecture_text = document['lecture_text']
+    global AI_MODEL
     AI_MODEL = model.AI_Model(lecture_text, temperature=0.6)
+    res = AI_MODEL.answer_question("what are collisions")
+    print(AI_MODEL.chat_history)
+    print(("ress", res))
     return jsonify({'success': 'finished'})
 
 # @app.route('')
