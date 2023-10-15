@@ -6,7 +6,7 @@ import Input from "./components/Input";
 
 import API from "./ChatbotAPILive";
 
-// import "./styles.css";
+import "./styles.css";
 import Header from "./components/Header";
 
 export const ChatBotLive = (props) => {
