@@ -11,7 +11,7 @@ import Header from "./components/Header";
 
 export const ChatBot = (props) => {
   const [messages, setMessages] = useState([]);
-  const {lectureName, lectureId} = props;
+  const {lectureName, lectureId} = props.props;
 
   useEffect(() => {
     async function loadWelcomeMessage() {
@@ -40,7 +40,10 @@ export const ChatBot = (props) => {
     <div className="chatbot">
       <Header />
       <Messages messages={messages} />
-      <Input onSend={send} />
+      <Input onSend={(input) => {
+        console.log(input);
+        send(input);
+      }} />
     </div>
   );
 }
