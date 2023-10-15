@@ -13,10 +13,10 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Josefin+Slab:wght@500&display=swap'); */
 .heading {
     font-weight: 700;
-    padding-top: 50px;
+    padding-top: 60px;
     text-align: center;
-    font-size: 50px;
-    font-family: 'Comfortaa', sans-serif;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
 }
 
 .card:hover {

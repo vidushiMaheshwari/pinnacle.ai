@@ -14,4 +14,6 @@ export const topics = [
 "Cloud Computing",
 "Internet of Things (IoT)",
 "Blockchain Technology",
+"Newton's Second Law",
+"Philosophy of 20th Century"
 ]

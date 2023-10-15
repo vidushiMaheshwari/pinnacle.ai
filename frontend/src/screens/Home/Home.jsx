@@ -45,7 +45,7 @@ export const Home = () => {
             <div className={classes.heading}>
                 pinnacle.ai
             </div>
-            <div className={classes.description}>Your personal AI buddy</div>
+            <div className={classes.description}>Your personal Teaching Assistant</div>
 
             <hr className={classes.divider}/>
                 {/* <div className={classes.chatbot}>
