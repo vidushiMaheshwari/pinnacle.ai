@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import classes from './Course.module.css';
 import { send_data } from "../../util/connection";
 import { LectureCard } from "../../components/LectureCards/LectureCard";
@@ -7,6 +7,11 @@ import { LectureCard } from "../../components/LectureCards/LectureCard";
 export const Course = () => {
     const {topic, college, course_name} = useParams();
     const [lectures, setLectures] = useState([]);
+    const navigate = useNavigate();
+
+    const goHome = () => {
+        navigate('/')
+    }
 
     useEffect(() => {
         async function getLectures() {
@@ -25,6 +30,7 @@ export const Course = () => {
 
     return (
         <div className={classes.body}>
+            <div className="pinnacle" onClick={goHome} style={{cursor: 'pointer', textDecoration: 'underline'}}>home</div>
             <div className={classes.course}> 
             {course_name} 
             </div>

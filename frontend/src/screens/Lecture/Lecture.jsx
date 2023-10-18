@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import classes from './Lecture.module.css';
 import "./Lecture.css";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { ChatBot } from "../../components/ChatBot/ChatBot";
 import { send_data } from "../../util/connection";
 // import { Quiz2 } from "../../components/Quiz2/Quiz2";
@@ -14,9 +14,14 @@ import Typography from "@mui/material/Typography";
 
 export const Lecture = () => {
   const { topic, college, course_name, lecture_name, lecture_id } = useParams();
+  const navigate = useNavigate();
   const [nextBtn, setNextBtn] = useState(false);
   const [text, setText] = useState("");
   const [quizQuestions, setQuizQuestions] = useState([]);
+
+  const goHome = () => {
+      navigate(`/`);
+  }
 
   useEffect(() => {
     async function createModel() {
@@ -77,6 +82,7 @@ export const Lecture = () => {
 
   return (
     <div className="body">
+      <div className="pinnacle" onClick={goHome} style={{cursor: 'pointer', textDecoration: 'underline'}}>home</div>
       <div className="heading">{lecture_name}</div>
       <div className="features">
         <Notes
